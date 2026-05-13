@@ -4,6 +4,7 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import AppNavigator from './src/navigation/AppNavigator';
+import { A11yProvider } from './src/context/AccessibilityContext';
 
 const navTheme = {
   ...DefaultTheme,
@@ -16,10 +17,12 @@ const navTheme = {
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer theme={navTheme}>
-        <StatusBar style="light" />
-        <AppNavigator />
-      </NavigationContainer>
+      <A11yProvider>
+        <NavigationContainer theme={navTheme}>
+          <StatusBar style="light" />
+          <AppNavigator />
+        </NavigationContainer>
+      </A11yProvider>
     </GestureHandlerRootView>
   );
 }

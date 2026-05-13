@@ -11,6 +11,13 @@
       "resizeMode": "contain",
       "backgroundColor": "#0a0c10"
     },
+    "ios": {
+      "bundleIdentifier": "com.connecdna.app",
+      "supportsTablet": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",

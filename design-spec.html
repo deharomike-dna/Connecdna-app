@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ConnecDNA — Screen Layout Reference</title>
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #0f1521;
+    --surface2: #162033;
+    --surfaceElevated: #1c2942;
+    --border: #1e293b;
+    --border2: #2a3a52;
+    --text: #ffffff;
+    --text2: #cbd5e1;
+    --text3: #64748b;
+    --green: #22c55e;
+    --green-soft: rgba(34,197,94,0.12);
+    --amber: #f59e0b;
+    --amber-soft: rgba(245,158,11,0.12);
+    --red: #ef4444;
+    --red-soft: rgba(239,68,68,0.12);
+    --blue: #38bdf8;
+    --blue-soft: rgba(56,189,248,0.12);
+    --indigo: #6366f1;
+    --coral: #f47672;
+    --coral-soft: rgba(244,118,114,0.18);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "Segoe UI", Roboto, sans-serif;
+    background: #0a0c10;
+    color: var(--text);
+    padding: 48px 24px 96px;
+  }
+
+  .doc-header {
+    max-width: 1200px;
+    margin: 0 auto 56px;
+  }
+  .kicker {
+    color: var(--coral);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 36px;
+    margin: 0 0 12px;
+    letter-spacing: -0.5px;
+  }
+  .doc-sub {
+    color: var(--text2);
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 720px;
+    margin: 0;
+  }
+
+  .legend {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .pill {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+  }
+  .pill.coral { background: var(--coral-soft); color: var(--coral); border-color: rgba(244,118,114,0.3); }
+
+  .grid {
+    max-width: 1200px;
+    margin: 56px auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 64px 32px;
+  }
+
+  .screen {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .screen-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .screen-name {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+  }
+  .screen-route {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  /* Phone frame */
+  .phone {
+    width: 360px;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 44px;
+    padding: 8px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6),
+                0 0 0 2px rgba(255,255,255,0.04);
+    position: relative;
+  }
+  .phone::after {
+    content: "";
+    position: absolute;
+    top: 14px; left: 50%;
+    transform: translateX(-50%);
+    width: 110px; height: 30px;
+    background: #000;
+    border-radius: 18px;
+    z-index: 5;
+  }
+  .phone-screen {
+    background: var(--bg);
+    border-radius: 36px;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+    padding: 56px 0 0;
+  }
+
+  /* Generic screen primitives */
+  .screen-content {
+    height: 100%;
+    overflow: auto;
+    padding: 0 18px 18px;
+  }
+  .header-block {
+    padding: 8px 0 16px;
+  }
+  .h-title { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; }
+  .h-sub   { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .section-title {
+    font-size: 11px; font-weight: 800; color: var(--text2);
+    text-transform: uppercase; letter-spacing: 0.6px;
+    margin: 16px 0 8px;
+  }
+
+  .card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+  }
+  .card.elevated {
+    background: var(--surfaceElevated);
+    border-color: var(--border2);
+    border-radius: 18px;
+    padding: 18px;
+  }
+  .card.amber { border-left: 3px solid var(--amber); background: var(--amber-soft); }
+  .card.green { border-left: 3px solid var(--green); background: var(--green-soft); }
+  .card.red   { border-left: 3px solid var(--red); background: var(--red-soft); }
+
+  .row { display: flex; align-items: center; }
+  .between { display: flex; align-items: center; justify-content: space-between; }
+  .gap-sm { gap: 8px; }
+  .gap-md { gap: 12px; }
+  .gap-lg { gap: 18px; }
+
+  .pill-status {
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+  }
+  .pill-green { background: var(--green-soft); color: var(--green); }
+  .pill-amber { background: var(--amber-soft); color: var(--amber); }
+  .pill-red   { background: var(--red-soft); color: var(--red); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 8px 0 12px;
+  }
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+  }
+  .stat-val { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+  .stat-lbl { font-size: 10px; color: var(--text3); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  .btn-primary {
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 14px;
+    margin: 8px 0 16px;
+  }
+
+  /* Welcome */
+  .hero {
+    background: var(--surfaceElevated);
+    border: 1px solid var(--border2);
+    border-radius: 22px;
+    padding: 28px 18px;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .hero-logo {
+    width: 78px; height: 78px;
+    background: #000;
+    border: 2px solid var(--coral);
+    border-radius: 18px;
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .hero-logo svg { display: block; }
+  .hero-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+  .hero-kicker {
+    font-size: 11px; font-weight: 800; color: var(--indigo);
+    letter-spacing: 1.6px; text-transform: uppercase; margin: 4px 0 10px;
+  }
+  .hero-sub { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  .role-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .role-btn {
+    text-align: center; padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text3);
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .role-btn.active {
+    background: var(--surface2);
+    border-color: var(--border2);
+    color: var(--text);
+  }
+  .form-card { background: var(--surface); border:1px solid var(--border); border-radius:18px; padding:18px; }
+  .label { font-size: 10px; font-weight: 800; color: var(--text2); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .input {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--text3);
+    margin-bottom: 12px;
+  }
+  .register {
+    text-align: center; font-size: 12px; color: var(--text2);
+    padding: 12px 0;
+  }
+  .register strong { color: var(--indigo); }
+
+  /* Trust dashboard */
+  .greeting-row { display: flex; align-items: flex-start; justify-content: space-between; }
+  .bell {
+    width: 38px; height: 38px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    color: var(--text2);
+  }
+  .bell .dot {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--red);
+    color: white;
+    border-radius: 999px;
+    min-width: 16px; height: 16px;
+    padding: 0 4px;
+    font-size: 9px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--bg);
+  }
+  .signal-title { font-size: 12px; font-weight: 800; color: var(--red); margin-bottom: 4px; }
+  .signal-body  { font-size: 11px; color: var(--text2); line-height: 1.45; }
+  .signal-action { font-size: 11px; color: var(--red); font-weight: 800; margin-top: 8px; }
+
+  .loc-stats { display: flex; gap: 22px; margin-top: 12px; }
+  .loc-val { font-size: 17px; font-weight: 800; margin-bottom: 2px; }
+
+  /* Cards / Credentials */
+  .cred {
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 12px;
+    color: white;
+    display: flex; flex-direction: column;
+    gap: 16px;
+    min-height: 156px;
+  }
+  .cred .top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .cred .label { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; opacity: 0.85; color: white; text-transform: none; margin: 0; }
+  .cred .id { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 19px; font-weight: 800; letter-spacing: 1.5px; }
+  .cred .bottom { display: flex; justify-content: space-between; }
+  .cred .small { font-size: 9px; font-weight: 800; opacity: 0.65; letter-spacing: 0.6px; margin-bottom: 2px; }
+  .cred .val   { font-size: 11px; font-weight: 800; letter-spacing: 0.4px; }
+
+  .actions-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    margin-top: 6px;
+  }
+  .action-btn { text-align: center; }
+  .action-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--indigo);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 4px;
+    font-size: 16px;
+  }
+  .action-label { font-size: 10px; font-weight: 700; color: var(--text2); }
+
+  /* More menu */
+  .profile-card {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surfaceElevated);
+    border: 1px solid var(--border2);
+    border-radius: 18px;
+    padding: 14px;
+    margin-bottom: 18px;
+  }
+  .avatar {
+    width: 48px; height: 48px;
+    border-radius: 999px;
+    background: var(--indigo);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+  }
+  .profile-name { font-size: 14px; font-weight: 800; }
+  .profile-meta { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .trust-pill { background: var(--green-soft); color: var(--green); padding: 4px 10px; border-radius: 999px; font-size: 9px; font-weight: 800; letter-spacing: 0.7px; border: 1px solid rgba(34,197,94,0.35); }
+
+  .list-row {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+  }
+  .list-icon {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--indigo);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .list-icon.danger { background: var(--red-soft); color: var(--red); }
+  .item-label { font-weight: 800; font-size: 13px; }
+  .item-helper { font-size: 10px; color: var(--text3); margin-top: 2px; }
+  .chevron { color: var(--text3); margin-left: auto; font-size: 18px; font-weight: 300; }
+  .danger { color: var(--red); }
+
+  /* Annotation panel */
+  .notes {
+    margin-top: 14px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.55;
+  }
+  .notes strong { color: var(--text); }
+  .notes .ok { color: var(--green); }
+  .notes .warn { color: var(--amber); }
+  .notes .bad { color: var(--red); }
+
+  /* Tab bar */
+  .tabbar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex;
+    padding: 10px 0 14px;
+  }
+  .tab { flex: 1; text-align: center; }
+  .tab .ti {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text3);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 2px;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .tab.active .ti { background: var(--text); color: var(--bg); }
+  .tab-label { font-size: 10px; font-weight: 800; letter-spacing: 0.4px; color: var(--text3); }
+  .tab.active .tab-label { color: var(--text); }
+
+  .summary {
+    max-width: 1200px;
+    margin: 64px auto 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+  }
+  .summary h2 { margin: 0 0 12px; font-size: 18px; }
+  .summary p, .summary li { color: var(--text2); font-size: 13px; line-height: 1.6; }
+  .summary .ok   { color: var(--green); }
+  .summary .warn { color: var(--amber); }
+  .summary .bad  { color: var(--red); }
+
+  @media (max-width: 880px) {
+    .grid { grid-template-columns: 1fr; }
+    .phone { width: min(360px, 92vw); }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <div class="kicker">ConnecDNA · screen layout reference</div>
+  <h1>What every page looks like — iOS &amp; Android</h1>
+  <p class="doc-sub">
+    React Native renders identically on both platforms; the differences are
+    cosmetic (status-bar height, safe-area inset, gesture nav). Each screen
+    below shows the current implementation. Notes call out what is real
+    structure vs. mock data, so you can flag what to fix or wire up next.
+  </p>
+  <div class="legend">
+    <span class="pill coral">Logo: recreated approximation — needs source file for pixel-perfect</span>
+    <span class="pill">Layout: production-quality</span>
+    <span class="pill">Data: hardcoded mock</span>
+    <span class="pill">Auth: placeholder</span>
+  </div>
+</div>
+
+<div class="grid">
+
+  <!-- ============ WELCOME ============ -->
+  <div class="screen">
+    <div class="screen-head">
+      <h3 class="screen-name">1 · Welcome / Sign-in</h3>
+      <span class="screen-route">WelcomeScreen.tsx</span>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="screen-content">
+          <div class="hero">
+            <div class="hero-logo">
+              <svg width="48" height="48" viewBox="0 0 100 100">
+                <polygon points="50,12 88,50 50,88 12,50" fill="#d24c48"/>
+                <polygon points="12,42 50,4 65,16 27,54" fill="#ff9c98"/>
+                <polygon points="50,12 88,50 73,62 35,24" fill="#f47672"/>
+                <polygon points="50,30 70,50 50,70 30,50" fill="#0a0c10"/>
+                <line x1="32" y1="50" x2="68" y2="50" stroke="#ff9c98" stroke-width="6"/>
+                <line x1="50" y1="32" x2="50" y2="68" stroke="#f47672" stroke-width="6"/>
+              </svg>
+            </div>
+            <div class="hero-title">Welcome!</div>
+            <div class="hero-kicker">ConnecDNA</div>
+            <div class="hero-sub">Healthcare trust infrastructure for identity, permissions, claims, and audit.</div>
+          </div>
+
+          <div class="role-row">
+            <div class="role-btn active">Provider</div>
+            <div class="role-btn">Patient</div>
+          </div>
+
+          <div class="form-card">
+            <div class="label">Practice slug</div>
+            <div class="input">miami-medical-group</div>
+            <div class="label">DNA API key</div>
+            <div class="input">dna_••••••••••••••••</div>
+            <div class="btn-primary">Sign in</div>
+          </div>
+
+          <div class="register">New practice? <strong>Start free trial →</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <strong>Real:</strong> form layout, role toggle, validation gating the Sign-in button, secure-text on API key. <br/>
+      <strong class="warn">Mock:</strong> "Sign in" just flips a state flag — no real auth or token storage. Any input lets you in.
+    </div>
+  </div>
+
+  <!-- ============ TRUST DASHBOARD ============ -->
+  <div class="screen">
+    <div class="screen-head">
+      <h3 class="screen-name">2 · Trust Dashboard</h3>
+      <span class="screen-route">DashboardScreen.tsx</span>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="screen-content" style="padding-bottom: 80px;">
+          <div class="header-block between">
+            <div>
+              <div class="h-title">Good morning, Doctor</div>
+              <div class="h-sub">10:42 · Miami Medical Group</div>
+            </div>
+            <div class="bell">◌<span class="dot">2</span></div>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-box"><div class="stat-val" style="color:var(--green)">247</div><div class="stat-lbl">Protected</div></div>
+            <div class="stat-box"><div class="stat-val" style="color:var(--amber)">18</div><div class="stat-lbl">Needs review</div></div>
+            <div class="stat-box"><div class="stat-val">$185K</div><div class="stat-lbl">Monthly rev</div></div>
+            <div class="stat-box"><div class="stat-val" style="color:var(--green)">$32K</div><div class="stat-lbl">Risk prevented</div></div>
+          </div>
+
+          <div class="btn-primary">Approve protected claims (247)</div>
+
+          <div class="section-title">Urgent signals</div>
+          <div class="card red">
+            <div class="signal-title">NPI lapsed for Dr. Reyes</div>
+            <div class="signal-body">License renewal not on file. Submissions paused for this provider.</div>
+            <div class="signal-action">Resolve credential →</div>
+          </div>
+          <div class="card red">
+            <div class="signal-title">Payer rule changed: Aetna 99213</div>
+            <div class="signal-body">New documentation requirement effective today. 4 claims need review.</div>
+            <div class="signal-action">Review claims →</div>
+          </div>
+
+          <div class="section-title">Locations</div>
+          <div class="card green">
+            <div class="between">
+              <div style="font-weight:800;font-size:13px">Miami Medical Group</div>
+              <div class="pill-status pill-green">PROTECTED</div>
+            </div>
+            <div class="loc-stats">
+              <div><div class="loc-val" style="color:var(--green)">142</div><div class="stat-lbl">Protected</div></div>
+              <div><div class="loc-val" style="color:var(--amber)">6</div><div class="stat-lbl">Review</div></div>
+              <div><div class="loc-val" style="color:var(--blue)">1</div><div class="stat-lbl">Notices</div></div>
+            </div>
+          </div>
+          <div class="card amber">
+            <div class="between">
+              <div style="font-weight:800;font-size:13px">Coral Gables Annex</div>
+              <div class="pill-status pill-amber">NOTICE</div>
+            </div>
+            <div class="loc-stats">
+              <div><div class="loc-val" style="color:var(--green)">78</div><div class="stat-lbl">Protected</div></div>
+              <div><div class="loc-val" style="color:var(--amber)">9</div><div class="stat-lbl">Review</div></div>
+              <div><div class="loc-val" style="color:var(--blue)">2</div><div class="stat-lbl">Notices</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab bar -->
+        <div class="tabbar">
+          <div class="tab active"><div class="ti">◊</div><div class="tab-label">Trust</div></div>
+          <div class="tab"><div class="ti">▭</div><div class="tab-label">Credentials</div></div>
+          <div class="tab"><div class="ti">≡</div><div class="tab-label">More</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <strong>Real:</strong> stats grid, urgent-signals list, location cards with protected/review/notices breakdown. <br/>
+      <strong class="warn">Mock:</strong> all numbers (247, 18, $185K, $32K), all signals, all location names — hardcoded constants in the file. <br/>
+      <strong class="bad">Wires nothing:</strong> bell icon, "Approve protected claims" shows a confirm dialog but doesn't approve. Tapping a signal/location does nothing yet.
+    </div>
+  </div>
+
+  <!-- ============ CREDENTIALS ============ -->
+  <div class="screen">
+    <div class="screen-head">
+      <h3 class="screen-name">3 · Credentials</h3>
+      <span class="screen-route">CardsScreen.tsx</span>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="screen-content" style="padding-bottom: 80px;">
+          <div class="header-block between">
+            <div>
+              <div class="h-title">Credentials</div>
+              <div class="h-sub">4 on file · 1 expiring</div>
+            </div>
+            <div class="role-btn active" style="padding:6px 12px;font-size:11px">+ Add</div>
+          </div>
+
+          <div class="cred" style="background:#0f3a82">
+            <div class="top">
+              <div class="label">NPI · NATIONAL PROVIDER ID</div>
+              <div class="pill-status pill-green">ACTIVE</div>
+            </div>
+            <div class="id">1234 5678 90</div>
+            <div class="bottom">
+              <div><div class="small">HOLDER</div><div class="val">DR. M. DEHARO</div></div>
+              <div style="text-align:right"><div class="small">EXPIRY</div><div class="val">No expiry</div></div>
+            </div>
+          </div>
+
+          <div class="cred" style="background:#0f766e">
+            <div class="top">
+              <div class="label">DEA · CONTROLLED SUBSTANCES</div>
+              <div class="pill-status pill-green">ACTIVE</div>
+            </div>
+            <div class="id">BD 1234567</div>
+            <div class="bottom">
+              <div><div class="small">HOLDER</div><div class="val">DR. M. DEHARO</div></div>
+              <div style="text-align:right"><div class="small">EXPIRY</div><div class="val">06 / 2027</div></div>
+            </div>
+          </div>
+
+          <div class="cred" style="background:#7c3aed">
+            <div class="top">
+              <div class="label">STATE LICENSE · FL</div>
+              <div class="pill-status pill-amber">EXPIRING</div>
+            </div>
+            <div class="id">ME 1234567</div>
+            <div class="bottom">
+              <div><div class="small">HOLDER</div><div class="val">DR. M. DEHARO</div></div>
+              <div style="text-align:right"><div class="small">EXPIRY</div><div class="val">11 / 2026</div></div>
+            </div>
+          </div>
+
+          <div class="actions-row">
+            <div class="action-btn"><div class="action-icon">✓</div><div class="action-label">Verify</div></div>
+            <div class="action-btn"><div class="action-icon">↻</div><div class="action-label">Renew</div></div>
+            <div class="action-btn"><div class="action-icon">↗</div><div class="action-label">Share</div></div>
+            <div class="action-btn"><div class="action-icon">◔</div><div class="action-label">History</div></div>
+          </div>
+        </div>
+
+        <div class="tabbar">
+          <div class="tab"><div class="ti">◊</div><div class="tab-label">Trust</div></div>
+          <div class="tab active"><div class="ti">▭</div><div class="tab-label">Credentials</div></div>
+          <div class="tab"><div class="ti">≡</div><div class="tab-label">More</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <strong>Real:</strong> 4 color-coded credential cards (NPI / DEA / State License / Payer), status pills, quick-action row. <br/>
+      <strong class="warn">Mock:</strong> the identifiers (1234 5678 90, BD 1234567, ME 1234567), holder name, expiry dates — all in the file. <br/>
+      <strong class="bad">Wires nothing:</strong> + Add, Verify, Renew, Share, History — all placeholders.
+    </div>
+  </div>
+
+  <!-- ============ MORE / MENU ============ -->
+  <div class="screen">
+    <div class="screen-head">
+      <h3 class="screen-name">4 · More</h3>
+      <span class="screen-route">MenuScreen.tsx</span>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="screen-content" style="padding-bottom: 80px;">
+          <div class="header-block">
+            <div class="h-title">More</div>
+            <div class="h-sub">Account · Settings · Tools</div>
+          </div>
+
+          <div class="profile-card">
+            <div class="avatar">MD</div>
+            <div style="flex:1">
+              <div class="profile-name">Dr. Michael Deharo</div>
+              <div class="profile-meta">Miami Medical Group · Provider</div>
+            </div>
+            <div class="trust-pill">TRUSTED</div>
+          </div>
+
+          <div class="section-title">Verify</div>
+          <div class="list-row">
+            <div class="list-icon">◐</div>
+            <div style="flex:1"><div class="item-label">Identity (QIR)</div><div class="item-helper">Quick Identity Response</div></div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="list-row">
+            <div class="list-icon">◑</div>
+            <div style="flex:1"><div class="item-label">Permissions (PAL)</div><div class="item-helper">Permission Access Ledger</div></div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="list-row">
+            <div class="list-icon">◍</div>
+            <div style="flex:1"><div class="item-label">Audit trail</div><div class="item-helper">Verification &amp; decision history</div></div>
+            <div class="chevron">›</div>
+          </div>
+
+          <div class="section-title">Workflow</div>
+          <div class="list-row">
+            <div class="list-icon">◓</div>
+            <div style="flex:1"><div class="item-label">Claims readiness</div><div class="item-helper">Pre-submission review</div></div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="list-row">
+            <div class="list-icon">◌</div>
+            <div style="flex:1"><div class="item-label">Notifications</div><div class="item-helper">Signals &amp; urgent alerts</div></div>
+            <div class="chevron">›</div>
+          </div>
+
+          <div class="section-title">System</div>
+          <div class="list-row">
+            <div class="list-icon">⚙</div>
+            <div style="flex:1"><div class="item-label">Settings</div></div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="list-row">
+            <div class="list-icon danger">⏻</div>
+            <div style="flex:1"><div class="item-label danger">Log out</div></div>
+            <div class="chevron">›</div>
+          </div>
+        </div>
+
+        <div class="tabbar">
+          <div class="tab"><div class="ti">◊</div><div class="tab-label">Trust</div></div>
+          <div class="tab"><div class="ti">▭</div><div class="tab-label">Credentials</div></div>
+          <div class="tab active"><div class="ti">≡</div><div class="tab-label">More</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <strong>Real:</strong> profile header with avatar &amp; "TRUSTED" pill, grouped list rows with icon + label + helper + chevron. <br/>
+      <strong class="warn">Mock:</strong> profile name and "Miami Medical Group · Provider" — hardcoded. Trust pill is decorative. <br/>
+      <strong class="bad">Wires nothing:</strong> none of the list rows navigate yet — Identity, PAL, Audit, Claims, Notifications, Settings, Log out are all visual.
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== SUMMARY / OPEN ITEMS ====== -->
+<div class="summary">
+  <h2>Open items &amp; differences between iOS / Android</h2>
+  <p><strong>The screens render identically on both platforms.</strong> React Native uses the same component tree on iOS and Android; the differences you'll see on a real device:</p>
+  <ul>
+    <li><span class="ok">iOS:</span> rounded notch / Dynamic Island handled by SafeAreaView; status bar light text on the dark background.</li>
+    <li><span class="ok">Android:</span> bottom system gesture bar adds ~16pt — already accounted for via SafeAreaView. Status bar follows the app's dark theme.</li>
+    <li><span class="warn">Adaptive icon (Android):</span> uses <code>assets/adaptive-icon.png</code> on the dark navy background defined in <code>app.json</code>. Now drawn — was a 1×1 placeholder before this build.</li>
+    <li><span class="warn">App icon (iOS):</span> uses <code>assets/icon.png</code>. Now drawn from a recreation of the coral DNA mark you sent — pixel-perfect requires uploading the source file as an attachment, not pasted inline.</li>
+  </ul>
+
+  <h2 style="margin-top:24px">What's left to make this functional</h2>
+  <ul>
+    <li><span class="bad">Real authentication.</span> The Welcome form just flips an in-memory flag. No token storage, no API call. Needs Apple Sign-In, email/password, or the existing <code>dna_</code> API key flow against a real backend.</li>
+    <li><span class="bad">Real data.</span> Every number, name, and credential on every screen is hardcoded. Needs API calls (provider.getDashboard, credentials.list, signals.get, etc.).</li>
+    <li><span class="bad">Action wiring.</span> Approve, Verify, Renew, Add, Resolve credential — all currently no-ops. Each needs a backend endpoint and an onPress handler.</li>
+    <li><span class="warn">Persistence.</span> No expo-secure-store wiring yet — relaunching the app forgets the session.</li>
+    <li><span class="warn">Push notifications.</span> Urgent-signal alerts won't actually arrive. Requires Expo push tokens and a backend trigger.</li>
+  </ul>
+
+  <p style="margin-top:24px;font-size:12px;color:var(--text3)">
+    Generated: ConnecDNA visual reference. Open this file in Safari for the on-screen view; values shown are mock.
+  </p>
+</div>
+
+</body>
+</html>

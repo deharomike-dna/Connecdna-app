@@ -1,270 +1,353 @@
-import React from 'react';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// src/navigation/AppNavigator.tsx
+// Auth stack (Welcome → 2FA → CreateAccount) → role-routed bottom tabs.
+// Org users see: Dashboard / Claims / Credentials / Workspace / More.
+// Patient users see: Coverage / My care / More.
 
-type RootTabParamList = {
-  Dashboard: undefined;
-  Identity: undefined;
-  Claims: undefined;
-  Audit: undefined;
-  Settings: undefined;
-};
+import React, { useEffect, useState } from 'react'
+import { Text, View, StyleSheet, ActivityIndicator } from 'react-native'
+import { supabase } from '../lib/supabase'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-const Tab = createBottomTabNavigator<RootTabParamList>();
+import WelcomeScreen from '../screens/WelcomeScreen'
+import CreateAccountScreen from '../screens/CreateAccountScreen'
+import TwoFactorScreen from '../screens/TwoFactorScreen'
+import DashboardHomeScreen from '../screens/DashboardHomeScreen'
+import DashboardScreen from '../screens/DashboardScreen'
+import CardsScreen from '../screens/CardsScreen'
+import WorkspaceScreen from '../screens/WorkspaceScreen'
+import MenuScreen from '../screens/MenuScreen'
+import PatientHomeScreen from '../screens/patient/PatientHomeScreen'
+import PatientCareScreen from '../screens/patient/PatientCareScreen'
+import VerifyDocumentScreen from '../screens/VerifyDocumentScreen'
+import { COLORS, RADIUS } from '../theme'
 
-const COLORS = {
-  background: '#07111f',
-  card: '#0f1b2d',
-  text: '#ffffff',
-  muted: '#94a3b8',
-  accent: '#38bdf8',
-  border: '#1e293b',
-};
+type RootStackParamList = {
+  Welcome: undefined
+  TwoFactor: undefined
+  CreateAccount: { token: string }
+  Main: undefined
+  // VEC document intelligence — opened from any record-specific
+  // verification flow (employment/credential/education). The backend
+  // is shared with the web app's VerifyRecordModal.
+  VerifyDocument: {
+    profileId: string
+    recordType: 'employment' | 'education' | 'credential' | 'reference' | 'affiliation' | 'identity'
+    recordId: string
+    recordLabel: string
+  }
+}
 
-function ScreenContainer({
-  title,
-  subtitle,
-  children,
+type OrgTabParamList = {
+  Dashboard: undefined
+  Claims: undefined
+  Credentials: undefined
+  Workspace: undefined
+  More: undefined
+}
+
+type PatientTabParamList = {
+  Coverage: undefined
+  Care: undefined
+  More: undefined
+}
+
+const Stack = createNativeStackNavigator<RootStackParamList>()
+const OrgTab = createBottomTabNavigator<OrgTabParamList>()
+const PatientTab = createBottomTabNavigator<PatientTabParamList>()
+
+function TabIcon({
+  glyph, focused,
 }: {
-  title: string;
-  subtitle: string;
-  children?: React.ReactNode;
+  glyph: string
+  focused: boolean
 }) {
   return (
-    <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
-      <View style={styles.headerCard}>
-        <Text style={styles.kicker}>ConnecDNA</Text>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>{subtitle}</Text>
-      </View>
-      {children}
-    </ScrollView>
-  );
-}
-
-function DashboardScreen() {
-  return (
-    <ScreenContainer
-      title="DNA Trust Dashboard"
-      subtitle="Unified view of identity, permissions, transaction readiness, and audit posture."
-    >
-      <View style={styles.grid}>
-        <MetricCard label="Trust State" value="Active" />
-        <MetricCard label="Identity Layer" value="Ready" />
-        <MetricCard label="Claims Review" value="Live" />
-        <MetricCard label="Audit Trail" value="Enabled" />
-      </View>
-
-      <InfoCard
-        title="System Overview"
-        body="DNA operates as a verification and execution layer that helps confirm whether the right person, entity, permission, workflow, and transaction state are aligned before action is taken."
-      />
-    </ScreenContainer>
-  );
-}
-
-function IdentityScreen() {
-  return (
-    <ScreenContainer
-      title="Identity Verification"
-      subtitle="Validate users, providers, counterparties, devices, and execution authority."
-    >
-      <InfoCard
-        title="QIR — Quick Identity Response"
-        body="QIR is the moment-of-action identity response used to confirm whether a user or entity is authorized for a specific workflow."
-      />
-
-      <InfoCard
-        title="PAL — Permission Access Ledger"
-        body="PAL records permission states, role boundaries, access rules, and transaction-level authorization conditions."
-      />
-    </ScreenContainer>
-  );
-}
-
-function ClaimsScreen() {
-  return (
-    <ScreenContainer
-      title="Claims Readiness"
-      subtitle="Review healthcare claim readiness before submission."
-    >
-      <InfoCard
-        title="Transaction Readiness"
-        body="DNA can help check whether claim data, provider identity, location, payer rules, permissions, and supporting documentation are aligned before submission."
-      />
-
-      <InfoCard
-        title="Pre-Submission Review"
-        body="This layer supports review and verification workflows. It does not replace clinical judgment, payer rules, or official billing system requirements."
-      />
-    </ScreenContainer>
-  );
-}
-
-function AuditScreen() {
-  return (
-    <ScreenContainer
-      title="Audit Evidence"
-      subtitle="Track execution history, permission decisions, and verification events."
-    >
-      <InfoCard
-        title="Audit-Grade Records"
-        body="Each material action can be associated with an evidence trail showing who acted, what was verified, what permissions applied, and what state changed."
-      />
-
-      <InfoCard
-        title="Compliance Support"
-        body="DNA can support internal review, payer audits, access-control reviews, and operational compliance documentation."
-      />
-    </ScreenContainer>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <ScreenContainer
-      title="Settings"
-      subtitle="System configuration and environment status."
-    >
-      <InfoCard
-        title="Environment"
-        body="Preview environment is active. Connect your API client, Supabase credentials, and production rules when ready."
-      />
-
-      <InfoCard
-        title="Next Step"
-        body="Replace placeholder screens with your production screens after the Android build succeeds."
-      />
-    </ScreenContainer>
-  );
-}
-
-function MetricCard({ label, value }: { label: string; value: string }) {
-  return (
-    <View style={styles.metricCard}>
-      <Text style={styles.metricLabel}>{label}</Text>
-      <Text style={styles.metricValue}>{value}</Text>
+    <View style={[styles.tabIcon, focused && styles.tabIconActive]}>
+      <Text
+        style={[
+          styles.tabIconGlyph,
+          { color: focused ? COLORS.bg : COLORS.text3 },
+        ]}
+      >
+        {glyph}
+      </Text>
     </View>
-  );
+  )
 }
 
-function InfoCard({ title, body }: { title: string; body: string }) {
+function OrgTabs({
+  role, setRole, signOut,
+}: {
+  role: 'org' | 'patient'
+  setRole: (r: 'org' | 'patient') => void
+  signOut: () => void
+}) {
   return (
-    <View style={styles.infoCard}>
-      <Text style={styles.infoTitle}>{title}</Text>
-      <Text style={styles.infoBody}>{body}</Text>
-    </View>
-  );
-}
-
-export default function AppNavigator() {
-  return (
-    <Tab.Navigator
+    <OrgTab.Navigator
       initialRouteName="Dashboard"
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {
-          backgroundColor: COLORS.card,
-          borderTopColor: COLORS.border,
-          height: 72,
-          paddingTop: 8,
-          paddingBottom: 12,
-        },
-        tabBarActiveTintColor: COLORS.accent,
-        tabBarInactiveTintColor: COLORS.muted,
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: '600',
-        },
+        tabBarShowLabel: true,
+        tabBarStyle: styles.tabBar,
+        tabBarActiveTintColor: COLORS.text,
+        tabBarInactiveTintColor: COLORS.text3,
+        tabBarLabelStyle: styles.tabLabel,
       }}
     >
-      <Tab.Screen name="Dashboard" component={DashboardScreen} />
-      <Tab.Screen name="Identity" component={IdentityScreen} />
-      <Tab.Screen name="Claims" component={ClaimsScreen} />
-      <Tab.Screen name="Audit" component={AuditScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
-  );
+      <OrgTab.Screen
+        name="Dashboard"
+        component={DashboardHomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => <TabIcon glyph="⌂" focused={focused} />,
+        }}
+      />
+      <OrgTab.Screen
+        name="Claims"
+        component={DashboardScreen}
+        options={{
+          tabBarIcon: ({ focused }) => <TabIcon glyph="◊" focused={focused} />,
+        }}
+      />
+      <OrgTab.Screen
+        name="Credentials"
+        component={CardsScreen}
+        options={{
+          tabBarIcon: ({ focused }) => <TabIcon glyph="◐" focused={focused} />,
+        }}
+      />
+      <OrgTab.Screen
+        name="Workspace"
+        component={WorkspaceScreen}
+        options={{
+          tabBarIcon: ({ focused }) => <TabIcon glyph="▭" focused={focused} />,
+        }}
+      />
+      <OrgTab.Screen
+        name="More"
+        options={{
+          tabBarIcon: ({ focused }) => <TabIcon glyph="≡" focused={focused} />,
+        }}
+      >
+        {() => (
+          <MenuScreen
+            currentRole={role}
+            onSwitchRole={setRole}
+            onSignOut={signOut}
+          />
+        )}
+      </OrgTab.Screen>
+    </OrgTab.Navigator>
+  )
+}
+
+function PatientTabs({
+  role, setRole, signOut,
+}: {
+  role: 'org' | 'patient'
+  setRole: (r: 'org' | 'patient') => void
+  signOut: () => void
+}) {
+  return (
+    <PatientTab.Navigator
+      initialRouteName="Coverage"
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: true,
+        tabBarStyle: styles.tabBar,
+        tabBarActiveTintColor: COLORS.text,
+        tabBarInactiveTintColor: COLORS.text3,
+        tabBarLabelStyle: styles.tabLabel,
+      }}
+    >
+      <PatientTab.Screen
+        name="Coverage"
+        component={PatientHomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => <TabIcon glyph="▤" focused={focused} />,
+        }}
+      />
+      <PatientTab.Screen
+        name="Care"
+        component={PatientCareScreen}
+        options={{
+          tabBarIcon: ({ focused }) => <TabIcon glyph="✚" focused={focused} />,
+        }}
+      />
+      <PatientTab.Screen
+        name="More"
+        options={{
+          tabBarIcon: ({ focused }) => <TabIcon glyph="≡" focused={focused} />,
+        }}
+      >
+        {() => (
+          <MenuScreen
+            currentRole={role}
+            onSwitchRole={setRole}
+            onSignOut={signOut}
+          />
+        )}
+      </PatientTab.Screen>
+    </PatientTab.Navigator>
+  )
+}
+
+export default function AppNavigator() {
+  // 'loading'        : checking persisted Supabase session at boot
+  // 'welcome'        : signed-out, waiting for email/password
+  // 'twofactor'      : password ok, waiting for SMS OTP
+  // 'createAccount'  : opened an invite link, completing signup
+  // 'main'           : signed in + 2FA verified, app is open
+  const [phase, setPhase] = useState<
+    'loading' | 'welcome' | 'twofactor' | 'createAccount' | 'main'
+  >('loading')
+  const [role, setRole] = useState<'org' | 'patient'>('org')
+  const [inviteToken, setInviteToken] = useState<string | null>(null)
+
+  // On boot: check whether a Supabase session is already persisted.
+  // If yes, jump straight to 2FA gate (mobile enforces it on every fresh launch).
+  useEffect(() => {
+    let cancelled = false
+    supabase.auth.getSession().then(({ data }) => {
+      if (cancelled) return
+      if (data.session) {
+        setPhase('twofactor')
+      } else {
+        setPhase('welcome')
+      }
+    })
+    // React to SIGNED_OUT events (e.g. token refresh failure or explicit signOut)
+    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+      if (cancelled) return
+      if (event === 'SIGNED_OUT') {
+        setPhase('welcome')
+        setInviteToken(null)
+      }
+    })
+    return () => {
+      cancelled = true
+      sub.subscription.unsubscribe()
+    }
+  }, [])
+
+  const handlePasswordOk = () => setPhase('twofactor')
+  const handleTwoFactorOk = () => setPhase('main')
+  const handleSignOut = async () => {
+    try { await supabase.auth.signOut() } catch {}
+    setPhase('welcome')
+    setInviteToken(null)
+  }
+  const handleAccountCreated = (userType: 'org' | 'patient') => {
+    setRole(userType)
+    setInviteToken(null)
+    // Even after invite signup, require 2FA
+    setPhase('twofactor')
+  }
+
+  if (phase === 'loading') {
+    return (
+      <View style={styles.loadingScreen}>
+        <ActivityIndicator color={COLORS.indigo} />
+      </View>
+    )
+  }
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: COLORS.bg },
+      }}
+    >
+      {phase === 'welcome' ? (
+        <Stack.Screen name="Welcome">
+          {() => (
+            <WelcomeScreen
+              onSignIn={handlePasswordOk}
+              onOpenInviteToken={(token) => {
+                setInviteToken(token)
+                setPhase('createAccount')
+              }}
+            />
+          )}
+        </Stack.Screen>
+      ) : phase === 'createAccount' && inviteToken ? (
+        <Stack.Screen name="CreateAccount">
+          {() => (
+            <CreateAccountScreen
+              token={inviteToken}
+              onAccountCreated={handleAccountCreated}
+              onCancel={() => {
+                setInviteToken(null)
+                setPhase('welcome')
+              }}
+            />
+          )}
+        </Stack.Screen>
+      ) : phase === 'twofactor' ? (
+        <Stack.Screen name="TwoFactor">
+          {() => (
+            <TwoFactorScreen
+              mode="signin"
+              phoneHint="***42"
+              onVerified={handleTwoFactorOk}
+              onCancel={handleSignOut}
+            />
+          )}
+        </Stack.Screen>
+      ) : (
+        <>
+          <Stack.Screen name="Main">
+            {() =>
+              role === 'patient' ? (
+                <PatientTabs role={role} setRole={setRole} signOut={handleSignOut} />
+              ) : (
+                <OrgTabs role={role} setRole={setRole} signOut={handleSignOut} />
+              )
+            }
+          </Stack.Screen>
+          {/* VEC document intelligence — pushed onto the stack from
+              any record-specific verification flow. Same backend
+              as the web app's VerifyRecordModal. */}
+          <Stack.Screen
+            name="VerifyDocument"
+            component={VerifyDocumentScreen}
+            options={{ presentation: 'modal', headerShown: false }}
+          />
+        </>
+      )}
+    </Stack.Navigator>
+  )
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: COLORS.background,
+  tabBar: {
+    backgroundColor: COLORS.surface,
+    borderTopColor: COLORS.border,
+    borderTopWidth: 1,
+    height: 76,
+    paddingTop: 10,
+    paddingBottom: 14,
   },
-  content: {
-    padding: 20,
-    paddingTop: 64,
-    paddingBottom: 32,
-  },
-  headerCard: {
-    backgroundColor: COLORS.card,
-    borderRadius: 20,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    marginBottom: 20,
-  },
-  kicker: {
-    color: COLORS.accent,
-    fontSize: 13,
+  tabLabel: {
+    fontSize: 11,
     fontWeight: '700',
-    marginBottom: 8,
-    letterSpacing: 0.5,
-    textTransform: 'uppercase',
+    letterSpacing: 0.4,
   },
-  title: {
-    color: COLORS.text,
-    fontSize: 28,
-    fontWeight: '800',
-    marginBottom: 8,
+  tabIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: RADIUS.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
   },
-  subtitle: {
-    color: COLORS.muted,
-    fontSize: 15,
-    lineHeight: 22,
+  tabIconActive: { backgroundColor: COLORS.text },
+  tabIconGlyph: { fontSize: 18, fontWeight: '700' },
+  loadingScreen: {
+    flex: 1,
+    backgroundColor: COLORS.bg,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-    marginBottom: 20,
-  },
-  metricCard: {
-    width: '47%',
-    backgroundColor: COLORS.card,
-    borderRadius: 16,
-    padding: 16,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-  },
-  metricLabel: {
-    color: COLORS.muted,
-    fontSize: 12,
-    marginBottom: 8,
-  },
-  metricValue: {
-    color: COLORS.text,
-    fontSize: 20,
-    fontWeight: '800',
-  },
-  infoCard: {
-    backgroundColor: COLORS.card,
-    borderRadius: 18,
-    padding: 18,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    marginBottom: 14,
-  },
-  infoTitle: {
-    color: COLORS.text,
-    fontSize: 18,
-    fontWeight: '800',
-    marginBottom: 8,
-  },
-  infoBody: {
-    color: COLORS.muted,
-    fontSize: 15,
-    lineHeight: 22,
-  },
-});
+})

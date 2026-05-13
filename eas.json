@@ -16,7 +16,9 @@
       },
       "env": {
         "EXPO_PUBLIC_API_URL": "https://www.connecdna.com",
-        "EXPO_PUBLIC_ENV": "development"
+        "EXPO_PUBLIC_ENV": "development",
+        "EXPO_PUBLIC_SUPABASE_URL": "https://fionlopedipvhalqrhdl.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpb25sb3BlZGlwdmhhbHFyaGRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzOTc1NzQsImV4cCI6MjA5MDk3MzU3NH0.GVsIO8uDvDTlHA8X-2_VLQmLK8V0nb4TWtAnc0BR7ss"
       }
     },
     "preview": {
@@ -24,9 +26,29 @@
       "android": {
         "buildType": "apk"
       },
+      "ios": {
+        "simulator": true
+      },
       "env": {
         "EXPO_PUBLIC_API_URL": "https://www.connecdna.com",
-        "EXPO_PUBLIC_ENV": "preview"
+        "EXPO_PUBLIC_ENV": "preview",
+        "EXPO_PUBLIC_SUPABASE_URL": "https://fionlopedipvhalqrhdl.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpb25sb3BlZGlwdmhhbHFyaGRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzOTc1NzQsImV4cCI6MjA5MDk3MzU3NH0.GVsIO8uDvDTlHA8X-2_VLQmLK8V0nb4TWtAnc0BR7ss"
+      }
+    },
+    "preview-device": {
+      "distribution": "internal",
+      "ios": {
+        "credentialsSource": "remote"
+      },
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://www.connecdna.com",
+        "EXPO_PUBLIC_ENV": "preview",
+        "EXPO_PUBLIC_SUPABASE_URL": "https://fionlopedipvhalqrhdl.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpb25sb3BlZGlwdmhhbHFyaGRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzOTc1NzQsImV4cCI6MjA5MDk3MzU3NH0.GVsIO8uDvDTlHA8X-2_VLQmLK8V0nb4TWtAnc0BR7ss"
       }
     },
     "production": {
@@ -40,7 +62,9 @@
       },
       "env": {
         "EXPO_PUBLIC_API_URL": "https://www.connecdna.com",
-        "EXPO_PUBLIC_ENV": "production"
+        "EXPO_PUBLIC_ENV": "production",
+        "EXPO_PUBLIC_SUPABASE_URL": "https://fionlopedipvhalqrhdl.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpb25sb3BlZGlwdmhhbHFyaGRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzOTc1NzQsImV4cCI6MjA5MDk3MzU3NH0.GVsIO8uDvDTlHA8X-2_VLQmLK8V0nb4TWtAnc0BR7ss"
       }
     }
   },
@@ -52,8 +76,8 @@
         "releaseStatus": "draft"
       },
       "ios": {
-        "appleId": "YOUR_APPLE_ID",
-        "ascAppId": "YOUR_APP_STORE_CONNECT_APP_ID",
+        "appleId": "deharomike@yahoo.com",
+        "ascAppId": "F3CHD3AF35",
         "appleTeamId": "YOUR_APPLE_TEAM_ID"
       }
     }
