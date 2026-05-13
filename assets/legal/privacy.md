@@ -1,0 +1,82 @@
+# Privacy Policy
+
+*Effective Date: [INSERT DATE]*
+*Last Updated: [INSERT DATE]*
+
+
+**ConneCDNA is a platform operated by Silvermoon Capital LLC.**
+
+This Privacy Policy describes how ConneCDNA, an affiliate platform entity of Silvermoon Capital LLC ("ConneCDNA," "we," "us"), collects, uses, discloses, and protects information in connection with the ConneCDNA platform (the "Platform"). It applies to information processed in our role as a software, workflow-orchestration, verification, identity, and audit-infrastructure provider.
+
+## 1. Roles and Scope
+
+For most enterprise Customer Data, ConneCDNA acts as a service provider, processor, or business associate (as those terms are defined under applicable law) to the Customer, who is the controller. For data we collect about visitors to our public websites and prospective customers, ConneCDNA acts as the controller.
+
+## 2. Information We Collect
+
+- **Account information**: name, email, phone, role, organization, billing details (collected via the payment processor; not stored by ConneCDNA in card-data form).
+- **Customer Data**: information you upload, transmit, or generate through the Platform, which may include workflow records, identity records, verification artifacts, and execution-event metadata.
+- **Identity-verification data**: as processed through licensed identity-verification and KYC partners; ConneCDNA does not act as the verifying institution.
+- **Connection metadata**: information from third-party connections you authorize (e.g., Stripe, Plaid, Mercury, Airwallex, banking APIs), limited to what you authorize via OAuth or comparable scopes.
+- **Usage and device data**: IP address, device identifiers, browser type, log data, and analytics events.
+- **Cookies and similar technologies**: as described in our Cookie Notice.
+
+## 3. How We Use Information
+
+- to provide, maintain, and secure the Platform;
+- to orchestrate workflows, verifications, identity continuity, and audit logging;
+- to detect, prevent, and respond to fraud, abuse, and security incidents;
+- to comply with legal, regulatory, and contractual obligations;
+- to communicate with you about the Platform, including service announcements;
+- with your consent, for marketing communications you can opt out of at any time;
+- to produce de-identified, aggregated analytics that do not identify you or any individual.
+
+## 4. How We Share Information
+
+We share information only as needed and only with parties bound by appropriate confidentiality and data-protection obligations:
+
+- **Third-Party Services** that you connect or that are required to deliver the Platform (including Stripe, Plaid, Mercury, Airwallex, banking APIs, identity-verification providers, hosting, and analytics providers);
+- **Silvermoon Capital LLC and its affiliates**, as the parent and licensor of the ConneCDNA infrastructure;
+- **Professional advisors** (legal, accounting, audit) under confidentiality;
+- **Government, regulatory, or law-enforcement authorities** when required by law or valid legal process;
+- An **acquirer or successor** in connection with a merger, acquisition, financing, or sale of assets;
+- With **your direction or consent**.
+
+ConneCDNA does not sell personal information for monetary consideration.
+
+## 5. Healthcare Workflows (HIPAA-Aware Positioning)
+
+ConneCDNA is generally configured as software, workflow-orchestration, verification, and audit infrastructure. Where ConneCDNA receives, maintains, or transmits protected health information ("PHI") on behalf of a HIPAA-covered entity or business associate, the parties will execute a Business Associate Agreement ("BAA"), and ConneCDNA will process PHI only as permitted by the BAA and HIPAA. Customers are responsible for determining whether their use case involves PHI and for executing a BAA before submitting PHI to the Platform. Default Platform configurations are not authorized for PHI absent an executed BAA.
+
+## 6. Data Retention
+
+We retain personal information for as long as needed to provide the Platform; comply with legal, tax, accounting, and regulatory obligations; resolve disputes; enforce agreements; and maintain audit logs and compliance evidence trails. Audit logs are retained in accordance with the Data Usage & Audit Logging Disclosure. Customer Data is deleted or returned in accordance with that policy and the applicable order form on termination.
+
+## 7. Security
+
+We implement administrative, technical, and physical safeguards designed to protect information, including encryption in transit and at rest, role-based access controls, logging, monitoring, vulnerability management, and personnel training. No system is perfectly secure, and we cannot guarantee absolute security.
+
+## 8. International Transfers
+
+Information may be processed in the United States and other countries. Where required, we use appropriate transfer mechanisms (such as standard contractual clauses or comparable safeguards).
+
+## 9. Your Rights
+
+Depending on your jurisdiction (including under the CCPA/CPRA, VCDPA, CPA, CTDPA, UCPA, and other U.S. state privacy laws), you may have rights to access, correct, delete, port, or restrict processing of your personal information; opt out of certain processing; or appeal a refusal of a request. To exercise rights, contact [PRIVACY CONTACT EMAIL]. For data we process on behalf of a Customer, please direct your request to that Customer; we will assist them in responding.
+
+## 10. Children
+
+The Platform is not directed to children under 13, and we do not knowingly collect personal information from children under 13.
+
+## 11. Changes
+
+We may update this Privacy Policy. Material changes will be posted with an updated "Last Updated" date. Your continued use after the effective date constitutes acceptance.
+
+## 12. Contact
+
+Privacy questions: [PRIVACY CONTACT EMAIL].
+Mailing address: Silvermoon Capital LLC / ConneCDNA, [ADDRESS].
+
+---
+
+**ConneCDNA is a platform operated by Silvermoon Capital LLC. All intellectual property rights reserved.** The ConneCDNA name, logo, trademarks, service marks, software, infrastructure, execution systems, orchestration systems, identity systems, API frameworks, and all related materials are the exclusive property of Silvermoon Capital LLC.

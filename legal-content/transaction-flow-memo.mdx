@@ -1,0 +1,106 @@
+---
+slug: transaction-flow-memo
+title: Transaction Flow Legal Review Memo (Template for Counsel)
+category: framework
+version: 1.1.0
+effectiveDate: "[INSERT DATE]"
+lastUpdated: "[INSERT DATE]"
+requiredAtSignup: false
+requiresReacceptOnUpdate: false
+isMaterialChange: false
+parentEntity: Silvermoon Capital LLC
+governingLaw: Delaware
+summaryOfChanges: "v1.1.0 — Added Silvermoon Capital LLC operator attribution at top and bottom of every legal document; added trademark/IP reservation footer."
+visibility: internal
+---
+
+# Transaction Flow Legal Review Memo (Template for Counsel)
+
+> **IMPORTANT:** This document is a template prepared for review, revision, and reissuance by qualified outside counsel. It is not legal advice and was not authored by a licensed attorney. It is structured to help counsel evaluate whether the ConneCDNA architecture should be classified as software/SaaS orchestration or as a regulated financial activity. Counsel should pressure-test each section against the actual transaction flow, contracts, and product behavior before relying on or distributing it.
+
+**MEMORANDUM**
+
+**TO:** Board of Managers, Silvermoon Capital LLC; Executive Team, ConneCDNA
+**FROM:** [OUTSIDE COUNSEL — TO BE COMPLETED]
+**RE:** Regulatory Classification Analysis — ConneCDNA Transaction Flow
+**DATE:** [INSERT DATE]
+**PRIVILEGED & CONFIDENTIAL — ATTORNEY WORK PRODUCT (UPON ATTORNEY ADOPTION)**
+
+## I. Executive Summary
+
+This memorandum analyzes whether the ConneCDNA platform — owned and licensed by Silvermoon Capital LLC and operated by ConneCDNA as an affiliate platform entity — could be classified as (a) money transmission, (b) custodial finance, (c) escrow activity, (d) banking activity, (e) stored value, (f) payment facilitation, or (g) software-only orchestration infrastructure. Subject to the operational safeguards set forth in Section V and to verification of the actual transaction flow, the analysis supports classification as software-only orchestration infrastructure (SaaS) rather than a regulated financial-services activity. Counsel should re-verify each conclusion against current product behavior and applicable state-by-state requirements before relying on this memo.
+
+## II. Architecture Under Review
+
+ConneCDNA provides workflow orchestration, verification, identity continuity, audit logging, and execution-readiness infrastructure. The platform integrates with regulated third-party processors and banking providers, including Stripe, Plaid, Mercury, Airwallex, and other payment and banking APIs. Funds, when present in any user workflow, flow directly between the payer, the licensed Processor, the Processor's underlying bank or network, and the payee. ConneCDNA does not establish pooled or "for-the-benefit-of" accounts, does not initiate transfers from accounts it controls, and does not hold cryptographic keys or instruments capable of unilaterally moving customer funds.
+
+## III. Legal Frameworks Considered
+
+- **Federal:** Bank Secrecy Act and FinCEN money-services-business regulations (31 C.F.R. § 1010.100(ff)); FinCEN Interpretive Guidance regarding agents of payees, payment processors, and the integral and exclusivity exemptions.
+- **State money transmitter laws:** state-by-state statutes and regulations (e.g., NY DFS, California MTL, Texas, Florida, Illinois, Washington), including the Money Transmission Modernization Act (MTMA) as adopted by participating states.
+- **Banking and trust laws:** state and federal chartering requirements and prohibitions on unauthorized banking.
+- **Escrow laws:** state-specific licensing thresholds (e.g., California Financial Code; other states' equivalents).
+- **Stored-value and prepaid-access regulation:** 31 C.F.R. § 1010.100(ww); state prepaid statutes.
+- **Payment-facilitator/Card-network rules:** Visa, Mastercard, and other network rules; PCI DSS.
+- **Securities and broker-dealer regulation:** only to the extent any product feature touches securities or investment activity.
+- **Healthcare regulation:** HIPAA / HITECH where PHI is in scope.
+
+## IV. Classification Analysis
+
+### A. Money Transmission
+
+Under FinCEN guidance, a person who accepts and transmits funds is generally a "money transmitter," subject to limited exemptions including the payment-processor exemption, the integral exemption, and the agent-of-the-payee exemption. Because ConneCDNA does not accept, hold, or transmit funds, the architecture supports a conclusion that ConneCDNA is not a money transmitter. Counsel should specifically verify that (i) ConneCDNA never appears in the funds-flow as a counterparty, (ii) ConneCDNA does not direct movement of funds out of accounts it controls, and (iii) all customer-facing payment terms are between the customer and the Processor.
+
+### B. Custodial Finance
+
+Custody implies the present ability to access, control, or move customer assets. The architecture is designed so that ConneCDNA cannot unilaterally move funds, possesses no signing authority over customer or merchant bank accounts, and holds no instruments that would permit asset movement outside the Processor's controls.
+
+### C. Escrow Activity
+
+Because ConneCDNA does not hold funds at any point, the architecture is not escrow. Counsel should confirm there are no holdback, reserve, or "release-on-condition" features in which ConneCDNA itself receives or holds funds.
+
+### D. Banking Activity
+
+Banking activity generally requires accepting deposits or extending credit. ConneCDNA does neither. Marketing and product copy should not describe ConneCDNA as offering accounts, deposits, balances, or banking services. Where banking-API features are surfaced, the regulated banking institution must be clearly disclosed as the provider.
+
+### E. Stored Value / Prepaid Access
+
+ConneCDNA does not issue access devices or maintain redeemable balances. The architecture does not appear to implicate prepaid-access rules, provided that the Platform does not introduce balance-style features without redirecting them through a regulated issuer.
+
+### F. Payment Facilitation
+
+ConneCDNA is not a merchant of record, does not aggregate sub-merchant funds, and does not own a PayFac registration. The architecture instead routes each customer to its own Processor relationship, preserving the customer's direct merchant relationship with the Processor.
+
+### G. Software-Only Orchestration Infrastructure (SaaS)
+
+Subject to the safeguards in Section V, the architecture is consistent with a software/SaaS classification: ConneCDNA provides software, APIs, dashboards, and orchestration logic that coordinate workflow, verification, identity, and audit events around a regulated payment or banking flow operated by a licensed third party.
+
+## V. Operational Safeguards Required to Maintain SaaS Classification
+
+- **No funds in custody.** Architecture and audited controls must demonstrate that ConneCDNA cannot at any point receive, hold, commingle, or unilaterally move customer funds.
+- **Direct Processor relationships.** Each customer maintains its own direct account with the relevant Processor.
+- **Limited authorizations.** Any Platform-side credentials are scoped to instruction or read access only.
+- **Clear marketing and product copy.** All public-facing materials consistently describe ConneCDNA as software, workflow orchestration, verification, identity, and audit infrastructure.
+- **Fee transparency.** Platform Fees and Third-Party Service Fees are disclosed and invoiced separately.
+- **Restricted-business compliance.** Onboarding, monitoring, and AUP enforcement screen for prohibited activities.
+- **No settlement-finality representations.** Documentation, UX, and dashboards must avoid implying settlement finality, deposit insurance, or fund safety.
+- **Audit-log integrity.** Audit and execution-event logs are maintained as evidence of software-only behavior.
+- **HIPAA configuration.** BAAs are executed and Platform configurations are appropriately restricted where PHI is in scope.
+- **State-by-state monitoring.** Counsel monitors MTMA adoption and changes to state money-transmitter, virtual-currency, and prepaid-access laws.
+- **Periodic counsel review.** Reclassification risk is re-evaluated upon any change to product behavior, fund-flow architecture, processor relationships, or marketing.
+
+## VI. Risk Factors and Open Questions
+
+- Whether any UX or contractual element implies that ConneCDNA "holds" or "guarantees" funds or settlement.
+- Whether any future product feature (reserves, holdbacks, "credits," internal balances, refunds initiated by ConneCDNA) would change the funds-flow analysis.
+- Whether state MTMA adoption in any operating state introduces new licensing thresholds for orchestration or facilitation activity.
+- Whether identity-verification flows trigger separate state CRA-style licensing or NYDFS Part 500 obligations.
+- Whether healthcare features, if expanded, would require additional state-level data or telehealth licensing.
+
+## VII. Conclusion
+
+Based on the architecture as described and subject to verification of the points above, the ConneCDNA platform is most appropriately classified as software-only orchestration infrastructure (SaaS), with all regulated financial activity occurring at the level of licensed third-party Processors. Maintaining this classification depends on ongoing adherence to the operational safeguards in Section V and continued counsel review.
+
+---
+
+**ConneCDNA is a platform operated by Silvermoon Capital LLC. All intellectual property rights reserved.** The ConneCDNA name, logo, trademarks, service marks, software, infrastructure, execution systems, orchestration systems, identity systems, API frameworks, and all related materials are the exclusive property of Silvermoon Capital LLC.

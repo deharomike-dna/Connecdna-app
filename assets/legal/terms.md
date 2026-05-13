@@ -1,0 +1,138 @@
+# Terms of Service
+
+*Effective Date: [INSERT DATE]*
+*Last Updated: [INSERT DATE]*
+
+**ConneCDNA is a platform operated by Silvermoon Capital LLC.**
+
+These Terms of Service (the "Terms") constitute a binding agreement between you ("you," "Customer," or "User") and ConneCDNA, an affiliate platform entity owned by Silvermoon Capital LLC, a Delaware limited liability company ("ConneCDNA," "we," "us," or "our"). These Terms govern your access to and use of the ConneCDNA platform, websites, APIs, dashboards, and related services (collectively, the "Platform").
+
+By accessing or using the Platform, you agree to these Terms. If you do not agree, do not access or use the Platform. If you accept these Terms on behalf of an organization, you represent that you have authority to bind that organization, and "you" includes that organization.
+
+## 1. Nature of the Platform
+
+ConneCDNA is a software platform. Specifically, ConneCDNA provides workflow orchestration, verification infrastructure, an execution intelligence layer, audit and compliance infrastructure, identity continuity, and transaction-readiness tooling for enterprise customers. ConneCDNA is provided on a software-as-a-service basis.
+
+ConneCDNA is **NOT**, and does not operate as:
+
+- a bank, banking institution, or chartered depository institution;
+- a money transmitter or money services business under federal or state law;
+- an escrow agent or escrow company;
+- a payment processor, acquirer, or payment facilitator;
+- a custodian of customer funds, securities, or digital assets;
+- a broker-dealer or registered investment adviser; or
+- a fiduciary of any User.
+
+All regulated payment activity (including the movement, holding, processing, settlement, or custody of funds) occurs exclusively through licensed and regulated third-party financial institutions and processors (including, where applicable, Stripe, Plaid, Mercury, Airwallex, and other banking or payment APIs). ConneCDNA does not at any time take possession, custody, or control of customer funds.
+
+## 2. Eligibility and Accounts
+
+You must be at least 18 years old and capable of forming a binding contract. You must register an account, provide accurate information, and keep your credentials secure. You are responsible for all activity under your account.
+
+## 3. License to Use the Platform
+
+Subject to your compliance with these Terms and timely payment of applicable fees, ConneCDNA grants you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to access and use the Platform solely for your internal business purposes during the term of your subscription.
+
+You may not (i) copy, modify, or create derivative works of the Platform; (ii) reverse engineer, decompile, or attempt to extract the source code; (iii) resell, sublicense, or commercially exploit the Platform; (iv) circumvent rate limits, authentication, or security measures; (v) use the Platform to build a competing product; or (vi) use the Platform in violation of applicable law.
+
+## 4. Acceptable Use Policy
+
+You agree not to use the Platform to:
+
+- violate any law, regulation, or third-party right;
+- upload or transmit malware, viruses, or harmful code;
+- engage in fraud, deception, money laundering, terrorist financing, sanctions evasion, or any activity restricted under OFAC, FinCEN, or comparable authority;
+- process payments related to prohibited or restricted businesses listed by the applicable payment processor (including, where applicable, Stripe's Restricted Businesses list) or by ConneCDNA;
+- attempt to use the Platform as a substitute for a regulated banking, money-transmission, escrow, custody, or broker-dealer service;
+- scrape, harvest, or collect data from other Users;
+- interfere with or disrupt the integrity or performance of the Platform;
+- impersonate any person or entity or misrepresent affiliation;
+- upload or process protected health information ("PHI") except in accordance with a separate, executed Business Associate Agreement and applicable HIPAA-aware configurations;
+- use the Platform to make decisions that have legal or similarly significant effects on individuals without appropriate human review;
+- use the Platform in a manner that violates applicable export controls.
+
+## 5. Prohibited Activities
+
+In addition to the Acceptable Use Policy, the following are expressly prohibited: (a) using the Platform to hold, transmit, or convert funds outside of an authorized third-party processor flow; (b) representing to any third party that ConneCDNA holds or guarantees customer funds; (c) representing that ConneCDNA is a bank, money transmitter, escrow agent, custodian, or licensed financial institution; and (d) using the Platform to facilitate any activity that would require ConneCDNA to obtain a money-transmission, escrow, banking, broker-dealer, or comparable license.
+
+## 6. API Usage Restrictions
+
+Access to ConneCDNA APIs is subject to documentation, rate limits, scopes, and security requirements published by ConneCDNA. You shall not (i) exceed published rate limits or take actions designed to circumvent them; (ii) use API credentials issued to another party; (iii) cache or store API responses beyond the period reasonably necessary for the purpose for which they were retrieved; (iv) use the APIs to develop a competing product; or (v) integrate the APIs with prohibited third-party services. ConneCDNA may suspend or revoke API access for any breach of these Terms or any conduct that threatens the security or stability of the Platform.
+
+## 7. Customer Obligations
+
+You are responsible for (a) the accuracy and lawfulness of all data you submit ("Customer Data"); (b) obtaining all necessary consents and authorizations from end users, employees, contractors, patients, counterparties, and other data subjects; (c) maintaining all licenses, registrations, and regulatory authorizations required for your business; (d) configuring the Platform appropriately for your regulatory environment (including, where applicable, HIPAA, GLBA, state privacy laws, and PCI DSS scope reduction); (e) reviewing and approving all transactions initiated through the Platform; and (f) maintaining your own business continuity, backup, and disaster-recovery procedures.
+
+## 8. Third-Party Services
+
+The Platform integrates with and orchestrates third-party services, including, without limitation, Stripe, Plaid, Mercury, Airwallex, banking APIs, payment APIs, and identity-verification providers (each, a "Third-Party Service"). Your use of any Third-Party Service is governed by that provider's terms and policies, which you accept directly with that provider. ConneCDNA is not a party to those agreements, does not control Third-Party Services, and does not guarantee their availability, accuracy, settlement finality, or performance.
+
+## 9. Fees and Payment
+
+Fees are set forth in your applicable order form, subscription plan, or the ConneCDNA Fee Disclosure Policy. Platform fees are charged by ConneCDNA for software access, workflow orchestration, verification, identity, and audit infrastructure. Payment processing fees are charged separately by Third-Party Services and are not retained by ConneCDNA. Fees are non-refundable except as expressly stated. ConneCDNA may change fees on prospective notice.
+
+## 10. Confidentiality
+
+Each party will protect the other party's non-public business, technical, and financial information ("Confidential Information") with the same degree of care it uses for its own confidential information, and not less than reasonable care, and will use it only to perform under these Terms.
+
+## 11. Intellectual Property
+
+Silvermoon Capital LLC owns all right, title, and interest in and to the ConneCDNA name, brand, trademarks, service marks, logos, software, infrastructure, trust infrastructure, execution systems, orchestration systems, identity systems, API frameworks, models, documentation, and all related intellectual property. ConneCDNA operates the Platform under license from Silvermoon Capital LLC. No rights are granted to you except the limited license expressly stated in these Terms.
+
+You retain ownership of Customer Data. You grant ConneCDNA a worldwide, royalty-free, non-exclusive license to use, host, copy, transmit, and display Customer Data solely as necessary to provide the Platform, comply with law, and produce de-identified, aggregated analytics that do not identify you or any individual.
+
+Feedback you provide may be used by ConneCDNA without restriction or compensation, but ConneCDNA will not publicly identify you as the source without your consent.
+
+## 12. Term and Termination
+
+These Terms remain in effect while you use the Platform. Either party may terminate for material breach if not cured within thirty (30) days of written notice. ConneCDNA may suspend or terminate immediately for (i) violation of the Acceptable Use Policy or Prohibited Activities; (ii) risk to the security of the Platform; (iii) requirement of a Third-Party Service; or (iv) requirement of law. On termination, your license ends and ConneCDNA may delete or return Customer Data in accordance with the Data Usage & Audit Logging Disclosure.
+
+## 13. Disclaimers
+
+THE PLATFORM IS PROVIDED "AS IS" AND "AS AVAILABLE." TO THE MAXIMUM EXTENT PERMITTED BY LAW, CONNECDNA AND SILVERMOON CAPITAL LLC DISCLAIM ALL WARRANTIES, EXPRESS, IMPLIED, AND STATUTORY, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND ANY WARRANTIES ARISING FROM COURSE OF DEALING OR USAGE OF TRADE. CONNECDNA DOES NOT WARRANT THAT THE PLATFORM WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE, OR THAT ANY TRANSACTION INITIATED THROUGH A THIRD-PARTY SERVICE WILL SETTLE, CLEAR, OR BECOME FINAL.
+
+## 14. No Fiduciary Relationship
+
+Nothing in these Terms creates a fiduciary, partnership, joint venture, agency, employment, or trustee relationship between you and ConneCDNA or between you and Silvermoon Capital LLC. ConneCDNA does not act as your agent, fiduciary, custodian, or trustee with respect to any funds, accounts, or transactions.
+
+## 15. No Guarantee of Settlement Finality
+
+All payment, banking, and identity outcomes occur through Third-Party Services. ConneCDNA does not guarantee that any payment will clear, settle, or become final, that any chargeback or reversal will not occur, that any verification will be accepted by any third party, or that any banking or processor decision will produce any particular result.
+
+## 16. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, CONNECDNA, SILVERMOON CAPITAL LLC, AND THEIR RESPECTIVE OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, AND LICENSORS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUES, DATA, OR GOODWILL, ARISING OUT OF OR RELATED TO THE PLATFORM OR THESE TERMS, REGARDLESS OF THE THEORY OF LIABILITY, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+THE AGGREGATE LIABILITY OF CONNECDNA AND SILVERMOON CAPITAL LLC FOR ALL CLAIMS ARISING OUT OF OR RELATED TO THESE TERMS OR THE PLATFORM SHALL NOT EXCEED THE GREATER OF (A) THE FEES PAID BY YOU TO CONNECDNA IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM, OR (B) ONE HUNDRED U.S. DOLLARS (US$100). THESE LIMITATIONS APPLY EVEN IF A REMEDY FAILS OF ITS ESSENTIAL PURPOSE.
+
+## 17. Indemnification
+
+You will defend, indemnify, and hold harmless ConneCDNA, Silvermoon Capital LLC, and their respective affiliates, officers, directors, employees, and agents from and against all claims, liabilities, damages, losses, and expenses (including reasonable attorneys' fees) arising out of or related to (i) your or your end users' use of the Platform; (ii) Customer Data; (iii) your violation of these Terms or applicable law; or (iv) your representation to any third party regarding the regulatory status of ConneCDNA.
+
+## 18. Force Majeure
+
+Neither party will be liable for any delay or failure in performance (other than payment obligations) caused by events beyond its reasonable control, including acts of God, war, terrorism, riots, pandemics, epidemics, public-health emergencies, governmental action, sanctions, labor disputes, internet or telecommunications failures, third-party service failures (including Stripe, Plaid, Mercury, Airwallex, and underlying banks), cyberattacks, and natural disasters.
+
+## 19. Governing Law and Venue
+
+These Terms are governed by the laws of the State of Delaware, without regard to conflict-of-law principles. Subject to Section 20, the state and federal courts located in [COUNTY, Delaware] have exclusive jurisdiction over any dispute not subject to arbitration.
+
+## 20. Arbitration and Class-Action Waiver
+
+Any dispute, claim, or controversy arising out of or relating to these Terms or the Platform (a "Dispute") shall be resolved by binding individual arbitration administered by JAMS under its applicable rules, before a single arbitrator, in [CITY, Delaware]. The arbitrator may award any relief that a court could award. Judgment on the award may be entered in any court of competent jurisdiction.
+
+YOU AND CONNECDNA WAIVE ANY RIGHT TO BRING OR PARTICIPATE IN A CLASS, COLLECTIVE, OR REPRESENTATIVE ACTION. The arbitrator may not consolidate more than one party's claims or preside over any form of representative or class proceeding. This Section does not preclude either party from seeking temporary injunctive relief in court to protect intellectual property or confidentiality.
+
+You may opt out of this arbitration provision by sending written notice to [LEGAL NOTICES EMAIL/ADDRESS] within thirty (30) days of first accepting these Terms.
+
+## 21. Changes to the Terms
+
+ConneCDNA may update these Terms from time to time. Material changes will be communicated by posting the updated Terms on the Platform and updating the "Last Updated" date. Your continued use after the effective date constitutes acceptance.
+
+## 22. Miscellaneous
+
+These Terms (together with any order form, the Privacy Policy, and other policies referenced) constitute the entire agreement between the parties regarding the Platform and supersede prior agreements on the subject matter. If any provision is unenforceable, it will be modified to the minimum extent necessary, and the remainder will continue in effect. Failure to enforce any provision is not a waiver. You may not assign these Terms without ConneCDNA's consent; ConneCDNA may assign to an affiliate (including Silvermoon Capital LLC) or in connection with a merger, acquisition, or sale of assets. Notices to ConneCDNA must be sent to [LEGAL NOTICES ADDRESS / EMAIL].
+
+---
+
+**ConneCDNA is a platform operated by Silvermoon Capital LLC. All intellectual property rights reserved.** The ConneCDNA name, logo, trademarks, service marks, software, infrastructure, execution systems, orchestration systems, identity systems, API frameworks, and all related materials are the exclusive property of Silvermoon Capital LLC.

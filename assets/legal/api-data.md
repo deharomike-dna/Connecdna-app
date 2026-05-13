@@ -1,0 +1,40 @@
+# API & Third-Party Connection Disclosure
+
+
+**ConneCDNA is a platform operated by Silvermoon Capital LLC.**
+
+## 1. Overview
+
+The ConneCDNA platform exposes APIs and integrates with third-party services to perform payment, banking, identity-verification, and orchestration functions. This Disclosure summarizes the categories of connections and the user obligations associated with them.
+
+## 2. Categories of Third-Party Connections
+
+- **Payment APIs** (e.g., Stripe and other licensed processors): card acquiring, ACH origination, payouts, refunds, dispute handling.
+- **Banking APIs** (e.g., Mercury, Airwallex, and other regulated banking-API partners): account services, multi-currency operations, payouts, treasury features — performed by the regulated banking institution disclosed in-product.
+- **Account-verification APIs** (e.g., Plaid): connectivity to user-authorized financial accounts, balance and ownership verification.
+- **Identity-verification APIs**: KYC, document verification, biometric matching, sanctions screening — performed by the licensed identity provider.
+- **Other infrastructure APIs**: cloud hosting, observability, analytics, communications, and storage.
+
+## 3. ConneCDNA APIs
+
+ConneCDNA APIs allow customers and authorized integrators to programmatically use the Platform. Use is governed by the Terms of Service and applicable API documentation, including authentication, scopes, rate limits, deprecation policies, and security requirements.
+
+## 4. User Authorizations
+
+Connecting a Third-Party Service via the Platform constitutes your authorization for ConneCDNA to make API calls on your behalf in accordance with your configurations and to receive event webhooks, tokens, or metadata from that provider for orchestration, verification, audit, and security purposes. You may revoke connections at any time, subject to obligations to the Third-Party Service.
+
+## 5. No Endorsement; No Joint Liability
+
+Inclusion of a Third-Party Service does not constitute endorsement. ConneCDNA is not jointly or severally liable with any Third-Party Service for that provider's acts, omissions, decisions, fees, downtime, errors, settlement outcomes, or security incidents.
+
+## 6. Data Sharing
+
+Data exchanged with Third-Party Services is processed in accordance with the Privacy Policy and the Data Usage & Audit Logging Disclosure. Each Third-Party Service applies its own privacy and security practices to data it receives.
+
+## 7. Security
+
+You are responsible for protecting your API credentials and for the security of systems that consume ConneCDNA APIs. You must report suspected credential compromise to [SECURITY CONTACT EMAIL] without undue delay.
+
+---
+
+**ConneCDNA is a platform operated by Silvermoon Capital LLC. All intellectual property rights reserved.** The ConneCDNA name, logo, trademarks, service marks, software, infrastructure, execution systems, orchestration systems, identity systems, API frameworks, and all related materials are the exclusive property of Silvermoon Capital LLC.
