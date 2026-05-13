@@ -1,0 +1,31 @@
+# .maestro/login.yml
+# Sign in → 2FA SMS code → Dashboard.
+# Run: maestro test .maestro/login.yml
+
+appId: com.connecdna.app
+---
+- launchApp
+- assertVisible: "Welcome!"
+
+# Sign in
+- tapOn: "Username"
+- inputText: "demo_user"
+- tapOn: "Password"
+- inputText: "demo_password"
+- tapOn: "Sign in"
+
+# 2FA SMS code (any 6 digits accepted in stub)
+- assertVisible: "Enter the code"
+- tapOn:
+    index: 0
+    below: "Enter the code"
+- inputText: "1"
+- inputText: "2"
+- inputText: "3"
+- inputText: "4"
+- inputText: "5"
+- inputText: "6"
+
+# Dashboard
+- assertVisible: "Dashboard"
+- assertVisible: "Trusted Verified Layer"

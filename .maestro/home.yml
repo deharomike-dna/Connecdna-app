@@ -1,0 +1,8 @@
+# .maestro/home.yml
+# Launches the ConnecDNA app and verifies the Welcome screen renders.
+# Run with: maestro test .maestro/home.yml
+
+appId: com.connecdna.app
+---
+- launchApp
+- assertVisible: "Welcome!"
