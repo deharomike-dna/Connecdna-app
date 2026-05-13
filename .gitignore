@@ -4,3 +4,11 @@ dist/
 build/
 android/.gradle/
 android/app/build/
+
+# Secrets — never commit
+.env
+.env.local
+.env.*.local
+
+# Local planning artifacts (live in Drive/Notion, not git)
+*.docx
